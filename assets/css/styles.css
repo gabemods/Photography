@@ -18,6 +18,7 @@ body.light {
   --muted: #526b7a;
   --accent: #0d6efd;
   --glass: rgba(255, 255, 255, 0.6);
+  --header-bg: rgba(255, 255, 255, 0.8);
 }
 
 body.dark {
@@ -27,11 +28,15 @@ body.dark {
   --muted: #7f98ab;
   --accent: #7ce7d9;
   --glass: rgba(255, 255, 255, 0.8);
+  --header-bg: rgba(0, 0, 0, 0.8);
 }
 
 * {box-sizing:border-box}
-html,body{height:100%}
-body{
+html,body{
+  height:100%
+}
+
+body {
   margin:0;
   background:linear-gradient(180deg,var(--bg), color-mix(in srgb,var(--bg) 85%, black 5%));
   color:var(--text);
@@ -39,29 +44,50 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-.container{
+.container {
   max-width:var(--container);
   margin:0 auto;
   padding: clamp(18px,2.8vw,36px);
 }
 
-.site-header{
-  position:sticky; top:0; z-index:30;
-  backdrop-filter: blur(30px);
-  background: rgba(255, 255, 255, 0.8);
+.site-header {
+  position:sticky; 
+  top:0; 
+  z-index:30;
+  backdrop-filter: blur(100px);
+  background: var--(header-bg);
   border-bottom: 1px solid rgba(255, 255 ,255, 0.03);
 }
-.header-inner{
+
+.header-inner {
   display:flex; align-items:center; justify-content:space-between;
 }
-.brand{display:flex; gap:12px; align-items:center}
-.brand .logo{
-  font-size:28px; width:56px; height:56px; display:grid; place-items:center;
-  background:linear-gradient(90deg,var(--accent),transparent);
-  border-radius:12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
+.brand {
+  display:flex;
+  gap:12px; 
+  align-items:center
 }
-.brand h1{margin:0; font-weight:700; font-size:18px}
-.brand .tagline{margin:0; font-size:12px; color:var(--muted)}
+
+.brand .logo {
+  font-size:28px;
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(90deg,var(--accent),transparent);
+  border-radius:12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.brand h1 {
+  margin:0;
+  font-weight:700;
+  font-size:18px
+}
+
+.brand .tagline{margin:0; font-size:12px; color:var(--muted)
+}
 
 .nav { display:flex; gap:12px; align-items:center; }
 .nav a{ color:var(--text); text-decoration:none; padding:6px 10px; border-radius:8px; font-weight:600; font-size:14px}
