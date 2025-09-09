@@ -115,6 +115,7 @@ body {
   #menuToggle, .mobile-menu { display: none !important; }
 }
 
+/* Mobile menu container */
 .mobile-menu {
   position: fixed;
   inset: 0;
@@ -125,19 +126,19 @@ body {
   justify-content: center;
   gap: 28px;
   font-size: 24px;
-  opacity: 0;
-  transform: translateY(-10%);
+  transform: translateY(-100%); /* start off-screen */
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* smooth slide */
   z-index: 200;
 }
 
+/* Open state: slide down */
 .mobile-menu.open {
-  opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
+/* Menu list */
 .mobile-menu ul {
   list-style: none;
   padding: 0;
@@ -145,20 +146,70 @@ body {
   text-align: center;
 }
 
-.mobile-menu li { 
-  margin: 18px 0;
-  }
+/* Menu items start off-screen right */
+.mobile-menu li {
+  opacity: 0;
+  transform: translateX(50px);
+}
 
+/* Animate menu items in */
+.mobile-menu.open li {
+  animation: slideInItem 0.25s forwards ease-out;
+}
+
+/* Stagger menu items */
+.mobile-menu.open li:nth-child(1) { animation-delay: 0.05s; }
+.mobile-menu.open li:nth-child(2) { animation-delay: 0.1s; }
+.mobile-menu.open li:nth-child(3) { animation-delay: 0.15s; }
+.mobile-menu.open li:nth-child(4) { animation-delay: 0.2s; }
+
+/* Slide-in keyframes */
+@keyframes slideInItem {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Close: reverse menu items first */
+.mobile-menu.closing li {
+  animation: slideOutItem 0.2s forwards ease-in;
+}
+
+/* Stagger close in reverse */
+.mobile-menu.closing li:nth-child(1) { animation-delay: 0.15s; }
+.mobile-menu.closing li:nth-child(2) { animation-delay: 0.1s; }
+.mobile-menu.closing li:nth-child(3) { animation-delay: 0.05s; }
+.mobile-menu.closing li:nth-child(4) { animation-delay: 0s; }
+
+/* Slide-out keyframes */
+@keyframes slideOutItem {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* Menu links */
 .mobile-menu a {
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.mobile-menu a:hover { 
+.mobile-menu a:hover {
   color: var(--accent);
-  }
+  transform: scale(1.1);
+}
 
 .close-btn {
   position: absolute;
