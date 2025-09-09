@@ -1,3 +1,6 @@
+/* =======================================
+   1. GLOBAL STYLES & THEME VARIABLES
+   ======================================= */
 :root {
   --bg: #0f1720;
   --card: rgba(255, 255, 255, 0.03);
@@ -7,7 +10,9 @@
   --glass: rgba(255, 255, 255, 0.8);
   --radius: 14px;
   --container: 1100px;
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --icon: #fff;
+  --header-bg: rgba(0, 0, 0, 0.5);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,6 +23,7 @@ body.light {
   --text: #06121a;
   --muted: #526b7a;
   --accent: #0d6efd;
+  --icon: #000;
   --glass: rgba(255, 255, 255, 0.6);
   --header-bg: rgba(255, 255, 255, 0.8);
 }
@@ -28,20 +34,24 @@ body.dark {
   --text: #e7f0f8;
   --muted: #7f98ab;
   --accent: #7ce7d9;
+  --icon: #fff;
   --glass: rgba(255, 255, 255, 0.8);
-  --header-bg: rgba(0, 0, 0, 0.8);
+  --header-bg: rgba(0, 0, 0, 0.5);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
 body {
-  margin: 0;
   background: linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 85%, black 5%));
   color: var(--text);
   line-height: 1.45;
-  -webkit-font-smoothing: antialiased;
 }
 
 .container {
@@ -50,6 +60,17 @@ body {
   padding: clamp(18px, 2.8vw, 36px);
 }
 
+.muted {
+  color: var(--muted);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* =======================================
+   2. HEADER & NAVIGATION
+   ======================================= */
 .site-header {
   position: sticky;
   top: 0;
@@ -63,29 +84,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  min-height: 80px;
 }
 
 .brand {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .brand .logo {
-  font-size: 28px;
   width: 56px;
   height: 56px;
   display: grid;
   place-items: center;
   background: linear-gradient(90deg, var(--accent), transparent);
   border-radius: 12px;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
 }
 
 .brand h1 {
   margin: 0;
-  font-weight: 700;
   font-size: 18px;
+  font-weight: 700;
 }
 
 .brand .tagline {
@@ -94,10 +117,16 @@ body {
   color: var(--muted);
 }
 
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .nav {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 12px;
 }
 
 .nav a {
@@ -107,129 +136,23 @@ body {
   border-radius: 8px;
   font-weight: 600;
   font-size: 14px;
+  transition: background 0.2s ease;
 }
 
-.nav a:hover { background: var(--glass); }
-
-@media (min-width: 881px) {
-  #menuToggle, .mobile-menu { display: none !important; }
+.nav a:hover {
+  background: var(--glass);
 }
 
-/* Mobile menu container */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  font-size: 24px;
-  transform: translateY(-100%); /* start off-screen */
-  pointer-events: none;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* smooth slide */
-  z-index: 200;
-}
-
-/* Open state: slide down */
-.mobile-menu.open {
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* Menu list */
-.mobile-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-/* Menu items start off-screen right */
-.mobile-menu li {
-  opacity: 0;
-  transform: translateX(50px);
-}
-
-/* Animate menu items in */
-.mobile-menu.open li {
-  animation: slideInItem 0.25s forwards ease-out;
-}
-
-/* Stagger menu items */
-.mobile-menu.open li:nth-child(1) { animation-delay: 0.05s; }
-.mobile-menu.open li:nth-child(2) { animation-delay: 0.1s; }
-.mobile-menu.open li:nth-child(3) { animation-delay: 0.15s; }
-.mobile-menu.open li:nth-child(4) { animation-delay: 0.2s; }
-
-/* Slide-in keyframes */
-@keyframes slideInItem {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Close: reverse menu items first */
-.mobile-menu.closing li {
-  animation: slideOutItem 0.2s forwards ease-in;
-}
-
-/* Stagger close in reverse */
-.mobile-menu.closing li:nth-child(1) { animation-delay: 0.15s; }
-.mobile-menu.closing li:nth-child(2) { animation-delay: 0.1s; }
-.mobile-menu.closing li:nth-child(3) { animation-delay: 0.05s; }
-.mobile-menu.closing li:nth-child(4) { animation-delay: 0s; }
-
-/* Slide-out keyframes */
-@keyframes slideOutItem {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-}
-
-/* Menu links */
-.mobile-menu a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 600;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.mobile-menu a:hover {
-  color: var(--accent);
-  transform: scale(1.1);
-}
-
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--text);
-}
-
+/* =======================================
+   3. BUTTONS
+   ======================================= */
 .btn {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   color: var(--text);
+  padding: 8px 12px;
 }
 
 .btn.primary {
@@ -244,39 +167,70 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.icon-btn {
+.menu-btn {
   background: transparent;
-  border: 0;
-  font-size: 18px;
-  padding: 8px;
+  border: none;
   cursor: pointer;
+  flex-shrink: 0;
+  padding: 10px;
   color: var(--text);
-}
-
-.mobile-only { 
+  font-size: 32px;
+  line-height: 1;
   display: none;
-  }
-
-@media (max-width:880px) {
-  .nav a:not(.btn) { 
-    display: none;
-    }
-  .mobile-only { 
-    display: inline-block;
-    }
-  .nav.open a { 
-    display: inline-block;
-    margin-left: 6px;
-    }
 }
 
-section, .panel, .hero {
+/* =======================================
+   4. THEME TOGGLE & ICON ANIMATION
+   ======================================= */
+.theme-btn {
+  background: none;
+  border: 0;
+  padding: 6px;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--icon);
   position: relative;
-  z-index: 1;
-  background: var(--bg);
-  padding: clamp(60px, 8vw, 100px) 0;
+  overflow: visible;
 }
 
+.theme-btn .sun,
+.theme-btn .moon,
+.theme-btn .theme-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 50% 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+}
+
+.theme-btn .sun { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+.theme-btn .moon { opacity: 0; transform: translate(-50%, -50%) rotate(-20deg) scale(0.85); }
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.85) rotate(20deg); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.85) rotate(-20deg); }
+}
+
+/* Helper classes added by JS */
+.hide { animation: fadeOut 0.5s ease-in forwards; }
+.show { animation: fadeIn 0.5s ease-out forwards; }
+
+
+/* =======================================
+   5. PAGE SECTIONS & COMPONENTS
+   ======================================= */
 .hero {
   padding: clamp(80px, 10vw, 120px) 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -297,8 +251,7 @@ section, .panel, .hero {
 
 .hero-copy .lead {
   color: var(--muted);
-  margin-top: 12px;
-  margin-bottom: 14px;
+  margin: 12px 0 14px;
   font-weight: 500;
 }
 
@@ -324,7 +277,7 @@ section, .panel, .hero {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent);
 }
 
-.panel { 
+.panel {
   margin-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -348,6 +301,9 @@ section, .panel, .hero {
   font-size: 16px;
 }
 
+/* =======================================
+   6. SIMULATOR
+   ======================================= */
 .simulator .sim-grid {
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -387,9 +343,9 @@ section, .panel, .hero {
   pointer-events: none;
 }
 
-.sim-controls { 
+.sim-controls {
   background: transparent;
-  }
+}
 
 label {
   font-weight: 600;
@@ -415,6 +371,9 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
+/* =======================================
+   7. GALLERY & LIGHTBOX
+   ======================================= */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -448,63 +407,6 @@ input[type="range"]::-webkit-slider-thumb {
   padding: 10px 12px;
   font-size: 13px;
   color: var(--muted);
-}
-
-.learn-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 32px;
-}
-
-.learn-grid article {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form {
-  display: grid;
-  gap: 16px;
-  max-width: 700px;
-}
-
-.contact-form label span {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background: transparent;
-  color: var(--text);
-}
-
-.site-footer {
-  padding: 8px 0;
-  background: var(--bg);
-  border-top: 1px solid rgba(220, 220, 220, 0.8);
-  margin-top: 40px;
-  text-align: center;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-}
-
-.site-footer p {
-  margin: 0;
-  font-size: 14px;
-  color: var(--muted);
-  letter-spacing: 0.3px;
 }
 
 .lightbox {
@@ -543,29 +445,186 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-.muted { 
+/* =======================================
+   8. FOOTER
+   ======================================= */
+.site-footer {
+  padding: 8px 0;
+  background: var(--bg);
+  border-top: 1px solid rgba(220, 220, 220, 0.8);
+  margin-top: 40px;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 14px;
   color: var(--muted);
-  }
+  letter-spacing: 0.3px;
+}
 
-.accent { 
+/* =======================================
+   9. MOBILE MENU
+   ======================================= */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  font-size: 24px;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 200;
+  padding-bottom: 80px;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-menu li {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.mobile-menu.open li {
+  animation: slideInItem 0.25s forwards ease-out;
+}
+
+.mobile-menu.open li:nth-child(1) { animation-delay: 0.05s; }
+.mobile-menu.open li:nth-child(2) { animation-delay: 0.1s; }
+.mobile-menu.open li:nth-child(3) { animation-delay: 0.15s; }
+.mobile-menu.open li:nth-child(4) { animation-delay: 0.2s; }
+
+@keyframes slideInItem {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.mobile-menu.closing li {
+  animation: slideOutItem 0.2s forwards ease-in;
+}
+
+.mobile-menu.closing li:nth-child(1) { animation-delay: 0.15s; }
+.mobile-menu.closing li:nth-child(2) { animation-delay: 0.1s; }
+.mobile-menu.closing li:nth-child(3) { animation-delay: 0.05s; }
+.mobile-menu.closing li:nth-child(4) { animation-delay: 0s; }
+
+@keyframes slideOutItem {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(50px); }
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-menu a:hover {
   color: var(--accent);
-  }
+  transform: scale(1.1);
+}
 
-.grid { 
-  display: grid;
-  }
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text);
+}
 
-@media (max-width:880px) {
-  .hero-grid { 
-    grid-template-columns: 1fr;
+/* Update the mobile menu theme button to use the same logic as the header */
+.mobile-menu .theme-btn {
+  position: relative; /* Use relative positioning to contain the absolute icons */
+  overflow: hidden; /* Hide anything that goes outside the button's bounds */
+}
+
+/* Ensure icons are correctly positioned and sized */
+.mobile-menu .theme-btn .theme-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the icon */
+  width: 28px;
+  height: 28px;
+  pointer-events: none; /* Make icons non-interactive so the button itself handles clicks */
+  transition: opacity 0.4s ease, transform 0.4s ease; /* Add transition for smooth change */
+}
+
+/* Base states for icons (no animation classes needed in HTML) */
+.theme-btn .sun, .theme-icon.sun {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+.theme-btn .moon, .theme-icon.moon {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-20deg) scale(0.85);
+}
+
+/* Animation on body.dark */
+body.dark .theme-btn .sun, body.dark .theme-icon.sun {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(180deg) scale(0.8);
+}
+
+body.dark .theme-btn .moon, body.dark .theme-icon.moon {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+
+/* =======================================
+   10. RESPONSIVE DESIGN
+   ======================================= */
+@media (min-width: 881px) {
+  .nav {
+    display: flex !important;
   }
-  .simulator .sim-grid { 
-    grid-template-columns: 1fr;
-    }
-  .learn-grid { 
-    grid-template-columns: 1fr;
+  .menu-btn {
+    display: none !important;
   }
-  .facts { 
+}
+
+@media (max-width: 880px) {
+  .nav {
+    display: none;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .nav-container .theme-btn {
+    display: none;
+  }
+  .hero-grid,
+  .simulator .sim-grid,
+  .learn-grid,
+  .facts {
     grid-template-columns: 1fr;
   }
 }

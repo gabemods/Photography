@@ -11,26 +11,51 @@
 </head>
 <body class="light">
   <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="logo">📷</div>
-        <div>
-          <h1>Photography — <span class="accent">Aperture</span></h1>
-          <p class="tagline">Control light. Craft depth. Master focus.</p>
-        </div>
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo">📷</div>
+      <div>
+        <h1>Photography — <span class="accent">Aperture</span></h1>
+        <p class="tagline">Control light. Craft depth. Master focus.</p>
       </div>
-
-      <nav class="nav">
-  <a href="#about">About</a>
-  <a href="#simulator">Simulator</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#learn">Learn</a>
-  <button id="themeToggle" aria-label="Toggle theme" class="icon-btn">🌓</button>
-  <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">☰</button>
-</nav>
     </div>
-  </header>
-  <!-- Mobile fullscreen menu -->
+    
+    <div class="nav-container">
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#learn">Learn</a>
+      </nav>
+      
+      <button id="menuToggle" class="menu-btn" aria-label="Open menu">☰</button>
+      
+      <!-- HEADER THEME TOGGLE -->
+<button id="themeToggleHeader" class="theme-btn" aria-label="Toggle theme">
+  <!-- Sun icon -->
+  <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+
+  <!-- Moon icon -->
+  <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"></path>
+  </svg>
+</button>
+    </div>
+  </div>
+</header>
+
 <div id="mobileMenu" class="mobile-menu">
   <button id="closeMenu" class="close-btn" aria-label="Close menu">✕</button>
   <ul>
@@ -39,25 +64,27 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#learn">Learn</a></li>
   </ul>
+  
+<button id="themeToggleMobile" class="theme-btn" aria-label="Toggle theme">
+  <svg id="themeIconMobileSun" class="theme-icon sun" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="5" fill="var(--icon)" />
+    <g stroke="var(--icon)" stroke-width="2">
+      <line x1="12" y1="1" x2="12" y2="4" />
+      <line x1="12" y1="20" x2="12" y2="23" />
+      <line x1="1" y1="12" x2="4" y2="12" />
+      <line x1="20" y1="12" x2="23" y2="12" />
+      <line x1="4" y1="4" x2="6" y2="6" />
+      <line x1="18" y1="18" x2="20" y2="20" />
+      <line x1="18" y1="6" x2="20" y2="4" />
+      <line x1="4" y1="20" x2="6" y2="18" />
+    </g>
+  </svg>
+  <svg id="themeIconMobileMoon" class="theme-icon moon" viewBox="0 0 24 24">
+    <path fill="var(--icon)" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+  </svg>
+</button>
 </div>
-  <main>
-    <section id="hero" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h2>What is <span class="accent">Aperture</span>?</h2>
-          <p class="lead">
-            Aperture is the opening in a lens that controls how much light reaches your camera sensor. It also shapes depth of field — the zone of accepted sharpness in your image.
-          </p>
-          <p>
-            Learn how stopping down (higher f/numbers) and opening up (lower f/numbers) affect exposure and background blur. Try the simulator below.
-          </p>
-          <div class="cta-row">
-            <a href="#simulator" class="btn primary">Try the Simulator</a>
-            <a href="#gallery" class="btn">View Gallery</a>
-          </div>
-        </div>
-
-        <figure class="hero-image" aria-hidden="true">
+<figure class="hero-image" aria-hidden="true">
           <img src="https://picsum.photos/900/700?image=1069" alt="">
           <figcaption>Shallow depth of field — wide aperture</figcaption>
         </figure>
