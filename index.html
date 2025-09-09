@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Photography — Aperture</title>
+  <meta name="description" content="Learn aperture, f-stops and how they change depth of field. Interactive simulator and gallery." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="light">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">📷</div>
+        <div>
+          <h1>Photography — <span class="accent">Aperture</span></h1>
+          <p class="tagline">Control light. Craft depth. Master focus.</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#learn">Learn</a>
+        <a href="#contact" class="btn ghost">Contact</a>
+        <button id="themeToggle" aria-label="Toggle theme" class="icon-btn">🌓</button>
+        <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h2>What is <span class="accent">Aperture</span>?</h2>
+          <p class="lead">
+            Aperture is the opening in a lens that controls how much light reaches your camera sensor. It also shapes depth of field — the zone of accepted sharpness in your image.
+          </p>
+          <p>
+            Learn how stopping down (higher f/numbers) and opening up (lower f/numbers) affect exposure and background blur. Try the simulator below.
+          </p>
+          <div class="cta-row">
+            <a href="#simulator" class="btn primary">Try the Simulator</a>
+            <a href="#gallery" class="btn">View Gallery</a>
+          </div>
+        </div>
+
+        <figure class="hero-image" aria-hidden="true">
+          <!-- placeholder image; replace with your own -->
+          <img src="https://picsum.photos/900/700?image=1069" alt="">
+          <figcaption>Shallow depth of field — wide aperture</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="panel">
+      <div class="container">
+        <h3>Quick facts</h3>
+        <div class="facts">
+          <article>
+            <h4>Aperture size</h4>
+            <p>Lower f-numbers (e.g. f/1.8) = wider opening = more light + shallower depth of field.</p>
+          </article>
+          <article>
+            <h4>Depth of field</h4>
+            <p>Smaller aperture (higher f-number like f/16) increases depth of field — more of the scene is in focus.</p>
+          </article>
+          <article>
+            <h4>Exposure</h4>
+            <p>Aperture is one of the three pillars of exposure. Changing aperture requires compensation with shutter speed or ISO.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMULATOR -->
+    <section id="simulator" class="panel simulator">
+      <div class="container">
+        <h3>Aperture Simulator</h3>
+        <p class="muted">Drag the slider to change aperture. The image simulates depth of field (blur) and relative exposure.</p>
+
+        <div class="sim-grid">
+          <div class="sim-preview">
+            <div class="dof-wrapper">
+              <img id="simImage" src="https://picsum.photos/900/600?image=1050" alt="Simulated photo">
+              <div class="dof-overlay">
+                <div class="focus-line"></div>
+              </div>
+            </div>
+            <div class="sim-caption">Aperture: <strong id="fstopValue">f/2.8</strong></div>
+          </div>
+
+          <div class="sim-controls">
+            <label for="apertureRange">Aperture (f-stop)</label>
+            <input id="apertureRange" type="range" min="1.4" max="22" step="0.1" value="2.8" />
+
+            <div class="aperture-scale">
+              <!-- illustrative tick marks -->
+              <span>f/1.4</span><span>f/2.8</span><span>f/5.6</span><span>f/11</span><span>f/22</span>
+            </div>
+
+            <div class="sim-notes">
+              <p><strong>Tip:</strong> Lower f-stop = shallower depth of field. Use wide aperture for portraits and small aperture for landscapes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="panel">
+      <div class="container">
+        <h3>Gallery — Depth of field examples</h3>
+        <p class="muted">Click an image to enlarge.</p>
+
+        <div class="grid gallery-grid" id="galleryGrid">
+          <!-- replace src with your own images -->
+          <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1005" alt="Portrait shallow DOF"><figcaption>f/1.8 — shallow DOF</figcaption></figure>
+          <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1011" alt="Landscape deep DOF"><figcaption>f/11 — deep DOF</figcaption></figure>
+          <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1056" alt="Macro shallow DOF"><figcaption>f/2.0 — macro</figcaption></figure>
+          <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1019" alt="Street photo"><figcaption>f/5.6 — street</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARN -->
+    <section id="learn" class="panel">
+      <div class="container">
+        <h3>Learn more</h3>
+        <div class="learn-grid">
+          <article>
+            <h4>Common f-stops</h4>
+            <ul>
+              <li><strong>f/1.4 - f/2.8</strong> — great for portraits, low light</li>
+              <li><strong>f/4 - f/5.6</strong> — general-purpose, balanced</li>
+              <li><strong>f/8 - f/16</strong> — landscapes, sharpness across frame</li>
+            </ul>
+          </article>
+          <article>
+            <h4>Practice ideas</h4>
+            <ol>
+              <li>Shoot the same scene at f/1.8, f/5.6, f/16 — compare background blur and exposure.</li>
+              <li>Use aperture priority mode (A / Av) to control aperture directly.</li>
+              <li>Move closer to subject for shallower DOF even at the same aperture.</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="panel contact">
+      <div class="container">
+        <h3>Contact</h3>
+        <p>Have photos to share or questions about aperture? Send a message.</p>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks — this is a demo form.');">
+          <label>
+            <span>Name</span>
+            <input type="text" placeholder="Your name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea rows="4" placeholder="Tell me about your project..."></textarea>
+          </label>
+
+          <div class="form-row">
+            <button class="btn primary" type="submit">Send message</button>
+            <small class="muted">Or email: <a href="mailto:hello@aperture.example">hello@aperture.example</a></small>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Aperture — Photography education & inspiration</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Flickr">FL</a>
+        <a href="#" aria-label="Twitter">TW</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox modal -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="lightboxClose" class="lb-close" aria-label="Close">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxCaption"></p>
+  </div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
