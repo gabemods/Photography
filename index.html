@@ -21,17 +21,25 @@
       </div>
 
       <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#simulator">Simulator</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#learn">Learn</a>
-        <a href="#contact" class="btn ghost">Contact</a>
-        <button id="themeToggle" aria-label="Toggle theme" class="icon-btn">🌓</button>
-        <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">☰</button>
-      </nav>
+  <a href="#about">About</a>
+  <a href="#simulator">Simulator</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#learn">Learn</a>
+  <button id="themeToggle" aria-label="Toggle theme" class="icon-btn">🌓</button>
+  <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">☰</button>
+</nav>
     </div>
   </header>
-
+  <!-- Mobile fullscreen menu -->
+<div id="mobileMenu" class="mobile-menu">
+  <button id="closeMenu" class="close-btn" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#simulator">Simulator</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#learn">Learn</a></li>
+  </ul>
+</div>
   <main>
     <section id="hero" class="hero">
       <div class="container hero-grid">
@@ -50,7 +58,6 @@
         </div>
 
         <figure class="hero-image" aria-hidden="true">
-          <!-- placeholder image; replace with your own -->
           <img src="https://picsum.photos/900/700?image=1069" alt="">
           <figcaption>Shallow depth of field — wide aperture</figcaption>
         </figure>
@@ -98,7 +105,6 @@
             <input id="apertureRange" type="range" min="1.4" max="22" step="0.1" value="2.8" />
 
             <div class="aperture-scale">
-              <!-- illustrative tick marks -->
               <span>f/1.4</span><span>f/2.8</span><span>f/5.6</span><span>f/11</span><span>f/22</span>
             </div>
 
@@ -116,7 +122,6 @@
         <p class="muted">Click an image to enlarge.</p>
 
         <div class="grid gallery-grid" id="galleryGrid">
-          <!-- replace src with your own images -->
           <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1005" alt="Portrait shallow DOF"><figcaption>f/1.8 — shallow DOF</figcaption></figure>
           <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1011" alt="Landscape deep DOF"><figcaption>f/11 — deep DOF</figcaption></figure>
           <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1056" alt="Macro shallow DOF"><figcaption>f/2.0 — macro</figcaption></figure>
@@ -125,7 +130,6 @@
       </div>
     </section>
 
-    <!-- LEARN -->
     <section id="learn" class="panel">
       <div class="container">
         <h3>Learn more</h3>
@@ -149,47 +153,14 @@
         </div>
       </div>
     </section>
-
-    <section id="contact" class="panel contact">
-      <div class="container">
-        <h3>Contact</h3>
-        <p>Have photos to share or questions about aperture? Send a message.</p>
-
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks — this is a demo form.');">
-          <label>
-            <span>Name</span>
-            <input type="text" placeholder="Your name" required>
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" placeholder="you@example.com" required>
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea rows="4" placeholder="Tell me about your project..."></textarea>
-          </label>
-
-          <div class="form-row">
-            <button class="btn primary" type="submit">Send message</button>
-            <small class="muted">Or email: <a href="mailto:hello@aperture.example">hello@aperture.example</a></small>
-          </div>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Gabriel Longshaw</p>
-      <div class="socials">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Flickr">FL</a>
-        <a href="#" aria-label="Twitter">TW</a>
-      </div>
+      <p>© <span id="year"></span> Gabriel Longshaw. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Lightbox modal -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <button id="lightboxClose" class="lb-close" aria-label="Close">✕</button>
     <img id="lightboxImg" src="" alt="">
