@@ -4,9 +4,7 @@
   const mobileMenu = document.getElementById('mobileMenu');
   const closeMenu = document.getElementById('closeMenu');
   
-  // ======================
-  // THEME TOGGLE (HEADER)
-  // ======================
+
   function setupThemeToggle(btnId) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
@@ -16,14 +14,10 @@
       body.classList.toggle("light", !body.classList.contains("dark"));
     });
   }
-  
-  // Init toggles
+
   setupThemeToggle("themeToggleHeader");
   setupThemeToggle("themeToggleMobile");
   
-  // ======================
-  // MOBILE MENU
-  // ======================
   if (menuToggle && mobileMenu && closeMenu) {
     menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
     closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
@@ -32,15 +26,9 @@
     });
   }
   
-  // ======================
-  // YEAR
-  // ======================
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
   
-  // ======================
-  // SIMULATOR
-  // ======================
   const range = document.getElementById('apertureRange');
   const fstopValue = document.getElementById('fstopValue');
   const simImage = document.getElementById('simImage');
@@ -57,9 +45,6 @@
     updateSim(parseFloat(range.value));
   }
   
-  // ======================
-  // GALLERY LIGHTBOX
-  // ======================
   const galleryGrid = document.getElementById('galleryGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -92,9 +77,6 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   }
   
-  // ======================
-  // SMOOTH SCROLLING
-  // ======================
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (ev) => {
       const target = document.querySelector(a.getAttribute('href'));
