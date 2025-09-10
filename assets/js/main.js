@@ -4,7 +4,6 @@
   const mobileMenu = document.getElementById('mobileMenu');
   const closeMenu = document.getElementById('closeMenu');
   
-
   function setupThemeToggle(btnId) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
@@ -14,7 +13,7 @@
       body.classList.toggle("light", !body.classList.contains("dark"));
     });
   }
-
+  
   setupThemeToggle("themeToggleHeader");
   setupThemeToggle("themeToggleMobile");
   
@@ -40,7 +39,14 @@
       const blur = Math.max(0, (22 - v) / (22 - 1.4) * 12);
       const brightness = 1 + ((2.8 - v) / (22 - 1.4)) * 0.9;
       simImage.style.filter = `blur(${blur}px) brightness(${Math.max(0.6, brightness)})`;
+      
+      const min = parseFloat(range.min);
+      const max = parseFloat(range.max);
+      const progress = ((v - min) / (max - min)) * 100;
+      
+      range.style.setProperty('--progress', `${progress}%`);
     }
+    
     range.addEventListener('input', (e) => updateSim(parseFloat(e.target.value)));
     updateSim(parseFloat(range.value));
   }
