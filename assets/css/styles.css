@@ -636,6 +636,22 @@ body.dark .theme-btn .moon, body.dark .theme-icon.moon {
     position: relative;
     z-index: 0;
   }
+  .hero,
+.panel {
+  min-height: auto;
+  padding: clamp(60px, 8vw, 100px) 0;
+}
+
+.hero-grid,
+.sim-grid,
+.facts,
+.gallery-grid {
+  grid-auto-rows: min-content;
+}
+
+body {
+  overflow-x: hidden;
+}
   .facts {
     grid-template-columns: repeat(2, 1fr);
   }
