@@ -3,20 +3,34 @@
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const closeMenu = document.getElementById('closeMenu');
-  
+
+  function setTheme(mode) {
+    body.classList.remove("dark", "light");
+    body.classList.add(mode);
+  }
+
+  function applySystemTheme() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? "dark" : "light");
+  }
+
   function setupThemeToggle(btnId) {
     const btn = document.getElementById(btnId);
     if (!btn) return;
-    
     btn.addEventListener("click", () => {
-      body.classList.toggle("dark");
-      body.classList.toggle("light", !body.classList.contains("dark"));
+      if (body.classList.contains("dark")) setTheme("light");
+      else setTheme("dark");
     });
   }
-  
+
+  applySystemTheme();
   setupThemeToggle("themeToggleHeader");
   setupThemeToggle("themeToggleMobile");
-  
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", e => {
+    setTheme(e.matches ? "dark" : "light");
+  });
+
   if (menuToggle && mobileMenu && closeMenu) {
     menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
     closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
@@ -24,14 +38,14 @@
       link.addEventListener('click', () => mobileMenu.classList.remove('open'));
     });
   }
-  
+
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-  
+
   const range = document.getElementById('apertureRange');
   const fstopValue = document.getElementById('fstopValue');
   const simImage = document.getElementById('simImage');
-  
+
   if (range && fstopValue && simImage) {
     function updateSim(v) {
       const rounded = Math.round(v * 10) / 10;
@@ -39,18 +53,15 @@
       const blur = Math.max(0, (22 - v) / (22 - 1.4) * 12);
       const brightness = 1 + ((2.8 - v) / (22 - 1.4)) * 0.9;
       simImage.style.filter = `blur(${blur}px) brightness(${Math.max(0.6, brightness)})`;
-      
       const min = parseFloat(range.min);
       const max = parseFloat(range.max);
       const progress = ((v - min) / (max - min)) * 100;
-      
       range.style.setProperty('--progress', `${progress}%`);
     }
-    
     range.addEventListener('input', (e) => updateSim(parseFloat(e.target.value)));
     updateSim(parseFloat(range.value));
   }
-  
+
   const galleryGrid = document.getElementById('galleryGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -65,7 +76,6 @@
       lightbox.setAttribute('aria-hidden', 'false');
       lightbox.classList.add('open');
     }
-    
     function closeLightbox() {
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
@@ -82,7 +92,7 @@
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   }
-  
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (ev) => {
       const target = document.querySelector(a.getAttribute('href'));
