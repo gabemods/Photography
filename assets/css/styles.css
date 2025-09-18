@@ -4,13 +4,13 @@
   --card: #e9ecef;
   --text: #06121a;
   --muted: #526b7a;
-  --accent: #0d6efd;
+  --accent: #007bff;
   --glass: rgba(255, 255, 255, 0.6);
   --radius: 14px;
   --container: 1100px;
   --icon: #000;
   --header-bg: rgba(255, 255, 255, 0.9);
-  --progress: 50%; /* New CSS variable for slider progress */
+  --progress: 50%;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,7 +22,7 @@ body.dark {
   --card: #15222b;
   --text: #e7f0f8;
   --muted: #7f98ab;
-  --accent: #7ce7d9;
+  --accent: #5d9dff;
   --icon: #fff;
   --glass: rgba(255, 255, 255, 0.05);
   --header-bg: rgba(7, 16, 26, 0.8);
