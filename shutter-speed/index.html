@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shutter Speed — Photography</title>
+  <title>Photography - Shutter Speed</title>
   <meta name="description" content="Learn shutter speed, motion blur, and how to freeze or blur action. Interactive simulator and gallery." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -13,8 +13,10 @@
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
-      <h1>Photography</h1>
-      <p class="tagline">Control light. Capture motion. Master exposure.</p>
+      <div class="brand-text">
+        <h1>Photography</h1>
+        <p class="tagline">Control light. Capture motion. Master exposure.</p>
+      </div>
     </div>
     <div class="nav-container">
       <nav class="nav">
@@ -24,15 +26,52 @@
       </nav>
       <button id="menuToggle" class="menu-btn" aria-label="Open menu">☰</button>
       <button id="themeToggleHeader" class="theme-btn" aria-label="Toggle theme">
-        <!-- icons same as other pages -->
-        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="5"></circle></svg>
-        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"></path></svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"></path>
+        </svg>
       </button>
     </div>
   </div>
 </header>
 
-<!-- Hero -->
+<div id="mobileMenu" class="mobile-menu">
+  <button id="closeMenu" class="close-btn" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../aperture/">Aperture</a></li>
+    <li><a href="index.html" class="active">Shutter Speed</a></li>
+  </ul>
+  <button id="themeToggleMobile" class="theme-btn" aria-label="Toggle theme">
+    <svg id="themeIconMobileSun" class="theme-icon sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5" fill="var(--icon)" />
+      <g stroke="var(--icon)" stroke-width="2">
+        <line x1="12" y1="1" x2="12" y2="4" />
+        <line x1="12" y1="20" x2="12" y2="23" />
+        <line x1="1" y1="12" x2="4" y2="12" />
+        <line x1="20" y1="12" x2="23" y2="12" />
+        <line x1="4" y1="4" x2="6" y2="6" />
+        <line x1="18" y1="18" x2="20" y2="20" />
+        <line x1="18" y1="6" x2="20" y2="4" />
+        <line x1="4" y1="20" x2="6" y2="18" />
+      </g>
+    </svg>
+    <svg id="themeIconMobileMoon" class="theme-icon moon" viewBox="0 0 24 24">
+      <path fill="var(--icon)" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+    </svg>
+  </button>
+</div>
+
 <section class="hero panel">
   <div class="container hero-grid">
     <div class="hero-copy">
@@ -46,7 +85,6 @@
   </div>
 </section>
 
-<!-- Facts -->
 <section id="about" class="panel">
   <div class="container">
     <h3>Quick facts</h3>
@@ -67,7 +105,6 @@
   </div>
 </section>
 
-<!-- Simulator -->
 <section id="simulator" class="panel simulator">
   <div class="container">
     <h3>Shutter Speed Simulator</h3>
@@ -75,13 +112,17 @@
     <div class="sim-grid">
       <div class="sim-preview">
         <img id="shutterSimImage" src="https://picsum.photos/900/600?image=1021" alt="Simulated motion photo">
-        <div class="sim-caption">Shutter speed: <strong id="shutterValue">1/125s</strong></div>
+        <div class="sim-caption">Shutter speed: <span id="shutterValue">1/125s</span></div>
       </div>
       <div class="sim-controls">
         <label for="shutterRange">Shutter speed</label>
-        <input id="shutterRange" type="range" min="1" max="1000" step="1" value="125" />
-        <div class="aperture-scale">
-          <span>1s</span><span>1/60</span><span>1/125</span><span>1/500</span><span>1/1000</span>
+        <input id="shutterRange" type="range" min="0" max="100" step="1" value="50" />
+        <div class="shutter-scale">
+          <span>1s</span>
+          <span>1/15s</span>
+          <span>1/125s</span>
+          <span>1/500s</span>
+          <span>1/1000s</span>
         </div>
         <div class="sim-notes">
           <p><strong>Tip:</strong> Use fast shutter to freeze motion, or slow shutter for artistic blur.</p>
@@ -91,7 +132,7 @@
   </div>
 </section>
 
-<!-- Gallery -->
+
 <section id="gallery" class="panel">
   <div class="container">
     <h3>Gallery — Motion examples</h3>
@@ -105,7 +146,6 @@
   </div>
 </section>
 
-<!-- Learn -->
 <section id="learn" class="panel">
   <div class="container">
     <h3>Learn more</h3>
