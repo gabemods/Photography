@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Photography — Shutter Speed</title>
+  <meta name="description" content="Learn aperture, f-stops and how they change depth of field. Interactive simulator and gallery." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="light">
+  <header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div>
+        <h1>Photography — <span class="accent">Aperture</span></h1>
+        <p class="tagline">Control light. Craft depth. Master focus.</p>
+      </div>
+    </div>
+    <div class="nav-container">
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Aperture</a>
+        <a href="../shutter-speed">Shutter Speed</a>
+      </nav>
+      <button id="menuToggle" class="menu-btn" aria-label="Open menu">☰</button>
+      <button id="themeToggleHeader" class="theme-btn" aria-label="Toggle theme">
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobileMenu" class="mobile-menu">
+  <button id="closeMenu" class="close-btn" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="aperture/">Aperture</a></li>
+    <li><a href="shutter-speed/">Shutter Speed</a></li>
+  </ul>
+  <button id="themeToggleMobile" class="theme-btn" aria-label="Toggle theme">
+    <svg id="themeIconMobileSun" class="theme-icon sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5" fill="var(--icon)" />
+      <g stroke="var(--icon)" stroke-width="2">
+        <line x1="12" y1="1" x2="12" y2="4" />
+        <line x1="12" y1="20" x2="12" y2="23" />
+        <line x1="1" y1="12" x2="4" y2="12" />
+        <line x1="20" y1="12" x2="23" y2="12" />
+        <line x1="4" y1="4" x2="6" y2="6" />
+        <line x1="18" y1="18" x2="20" y2="20" />
+        <line x1="18" y1="6" x2="20" y2="4" />
+        <line x1="4" y1="20" x2="6" y2="18" />
+      </g>
+    </svg>
+    <svg id="themeIconMobileMoon" class="theme-icon moon" viewBox="0 0 24 24">
+      <path fill="var(--icon)" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+    </svg>
+  </button>
+</div>
+<section class="hero panel">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <h2>Explore Depth of Field</h2>
+      <p class="lead">See how aperture changes focus and exposure in real time.</p>
+    </div>
+    <figure class="hero-image">
+      <img src="https://picsum.photos/900/700?image=1069" alt="Shallow depth of field">
+      <figcaption>Shallow depth of field — wide aperture</figcaption>
+    </figure>
+  </div>
+</section>
+<section id="about" class="panel">
+  <div class="container">
+    <h3>Quick facts</h3>
+    <div class="facts">
+      <article>
+        <h4>Aperture size</h4>
+        <p>Lower f-numbers (e.g. f/1.8) = wider opening = more light + shallower depth of field.</p>
+      </article>
+      <article>
+        <h4>Depth of field</h4>
+        <p>Smaller aperture (higher f-number like f/16) increases depth of field — more of the scene is in focus.</p>
+      </article>
+      <article>
+        <h4>Exposure</h4>
+        <p>Aperture is one of the three pillars of exposure. Changing aperture requires compensation with shutter speed or ISO.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="simulator" class="panel simulator">
+  <div class="container">
+    <h3>Aperture Simulator</h3>
+    <p class="muted">Drag the slider to change aperture. The image simulates depth of field (blur) and relative exposure.</p>
+    <div class="sim-grid">
+      <div class="sim-preview">
+        <div class="dof-wrapper">
+          <img id="simImage" src="https://picsum.photos/900/600?image=1050" alt="Simulated photo">
+          <div class="dof-overlay">
+            <div class="focus-line"></div>
+          </div>
+        </div>
+        <div class="sim-caption">Aperture: <strong id="fstopValue">f/2.8</strong></div>
+      </div>
+      <div class="sim-controls">
+        <label for="apertureRange">Aperture (f-stop)</label>
+        <input id="apertureRange" type="range" min="1.4" max="22" step="0.1" value="2.8" />
+        <div class="aperture-scale">
+          <span>f/1.4</span><span>f/2.8</span><span>f/5.6</span><span>f/11</span><span>f/22</span>
+        </div>
+        <div class="sim-notes">
+          <p><strong>Tip:</strong> Lower f-stop = shallower depth of field. Use wide aperture for portraits and small aperture for landscapes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="gallery" class="panel">
+  <div class="container">
+    <h3>Gallery — Depth of field examples</h3>
+    <p class="muted">Click an image to enlarge.</p>
+    <div class="grid gallery-grid" id="galleryGrid">
+      <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1005" alt="Portrait shallow DOF"><figcaption>f/1.8 — shallow DOF</figcaption></figure>
+      <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1011" alt="Landscape deep DOF"><figcaption>f/11 — deep DOF</figcaption></figure>
+      <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1056" alt="Macro shallow DOF"><figcaption>f/2.0 — macro</figcaption></figure>
+      <figure tabindex="0"><img src="https://picsum.photos/400/300?image=1019" alt="Street photo"><figcaption>f/5.6 — street</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section id="learn" class="panel">
+  <div class="container">
+    <h3>Learn more</h3>
+    <div class="learn-grid">
+      <article>
+        <h4>Common f-stops</h4>
+        <ul>
+          <li><strong>f/1.4 - f/2.8</strong> — great for portraits, low light</li>
+          <li><strong>f/4 - f/5.6</strong> — general-purpose, balanced</li>
+          <li><strong>f/8 - f/16</strong> — landscapes, sharpness across frame</li>
+        </ul>
+      </article>
+      <article>
+        <h4>Practice ideas</h4>
+        <ol>
+          <li>Shoot the same scene at f/1.8, f/5.6, f/16 — compare background blur and exposure.</li>
+          <li>Use aperture priority mode (A / Av) to control aperture directly.</li>
+          <li>Move closer to subject for shallower DOF even at the same aperture.</li>
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> Gabriel Longshaw. All rights reserved.</p>
+  </div>
+</footer>
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button id="lightboxClose" class="lb-close" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="">
+  <p id="lightboxCaption"></p>
+</div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
