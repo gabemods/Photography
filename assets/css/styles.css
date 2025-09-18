@@ -464,6 +464,40 @@ input[type="range"]::-webkit-slider-runnable-track {
 .mobile-menu.open .close-btn {
   transform: rotate(90deg);
 }
+
+/* Reusable button styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent, #0077ff);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.btn:hover {
+  background: var(--accent-hover, #005fd1);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: none;
+  border: 2px solid var(--accent, #0077ff);
+  color: var(--accent, #0077ff);
+}
+
+.btn-outline:hover {
+  background: var(--accent, #0077ff);
+  color: #fff;
+}
 @media(max-width: 767px) {
   .nav, .nav-container .theme-btn {
     display: none;
